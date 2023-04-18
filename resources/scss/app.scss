@@ -1,0 +1,11 @@
+@import '~bootstrap/scss/bootstrap';
+
+a {
+    text-decoration: none;
+}
+
+.float::after {
+    content: "";
+    clear: both;
+    display: table;
+}
