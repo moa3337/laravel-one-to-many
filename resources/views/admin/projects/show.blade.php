@@ -14,6 +14,12 @@
     <section class="card">
         <div class="card-body ">
             <h3></h3>
+            <p>
+                <strong>Categoria: </strong>
+                <span class="badge rounded-pill" style="background-color: {{ $project->type?->color }}">
+                    {{ $project->type?->label }}   
+                </span>
+            </p>
             <figure class="float-end">
                 <img src="{{ $project->getImageUri() }}" class="w-50" alt="{{ $project->slug }}">
                 <figcaption>

@@ -11,7 +11,16 @@ class Project extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'image', 'text', 'published'];
+    protected $fillable = ['type_id', 'title', 'image', 'text', 'published'];
+
+    // # Relazioni
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
+    // @ Getter
 
     public function getAbstract($max = 40)
     {
@@ -33,6 +42,8 @@ class Project extends Model
 
         return $possible_slug;
     }
+
+    // Mutators - formattazione date
 
     protected function getUpdatedAttribute($value)
     {

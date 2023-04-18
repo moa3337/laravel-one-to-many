@@ -19,6 +19,7 @@
         <thead>
             <tr>
                 <th scope="col">id</th>
+                <th scope="col">Tipologia</th>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">
@@ -35,6 +36,7 @@
             @forelse ($projects as $project)
             <tr>
                 <th scope="row">{{ $project->id }}</th>
+                <td>{{ $project->type?->label }}</td>
                 <td>{{ $project->title }}</td>
                 <td>{{ $project->getAbstract(10) }}</td>
                 <td>{{ $project->updated_at }}</td>

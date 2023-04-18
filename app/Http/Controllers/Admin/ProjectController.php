@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,8 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project;
-        return view('admin.projects.form', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.form', compact('project', 'types'));
     }
 
     /**
@@ -46,6 +48,7 @@ class ProjectController extends Controller
                 'image' => 'nullable|image',
                 'text' => 'required|string',
                 'published' => 'boolean',
+                'type_id' => 'nullable|exists:type,id',
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio',
@@ -54,6 +57,7 @@ class ProjectController extends Controller
                 'image.image' => 'L\'immagine deve essere un\'immagine',
                 'text.required' => 'La descrizione è obbligatoria',
                 'text.string' => 'La descrizione deve essere una stringa',
+                'type_id.exists' => 'L\'id del tipo non è valido',
             ]
         );
 
@@ -93,7 +97,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.form', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.form', compact('project', 'types'));
     }
 
     /**
@@ -111,6 +116,7 @@ class ProjectController extends Controller
                 'image' => 'nullable|image',
                 'text' => 'required|string',
                 'published' => 'boolean',
+                'type_id' => 'nullable|exists:type,id',
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio',
@@ -119,6 +125,7 @@ class ProjectController extends Controller
                 'image.image' => 'L\'immagine deve essere un\'immagine',
                 'text.required' => 'La descrizione è obbligatoria',
                 'text.string' => 'La descrizione deve essere una stringa',
+                'type_id.exists' => 'L\'id del tipo non è valido',
             ]
         );
 

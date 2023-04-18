@@ -47,6 +47,19 @@
         <hr class="mt-2">
         
         <div class="col">
+            <label for="type_id" class="form-label">Type</label>
+            <select name="type_id" id="type_id" class="form-select @error ('type_id') is-invalid @enderror" >
+                <option value="">Nessun tipo</option>
+                @foreach ($types as $type)
+                    <option @if(old('type_id', $project->type_id) == $type->id) selected @endif value="{{ $type->id }}">{{ $type->label }}</option>  
+                @endforeach
+            </select>
+            @error('type_id')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+
             <label for="title" class="form-label">Title</label>
             <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $project->title) }}" />
             @error('title')
