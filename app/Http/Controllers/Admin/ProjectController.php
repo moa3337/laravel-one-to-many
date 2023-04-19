@@ -16,7 +16,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $projects = Project::orderBy('updated_at', 'DESC')->paginate(10);
         return view('admin.projects.index', compact('projects'));
@@ -48,7 +48,7 @@ class ProjectController extends Controller
                 'image' => 'nullable|image',
                 'text' => 'required|string',
                 'published' => 'boolean',
-                'type_id' => 'nullable|exists:type,id',
+                'type_id' => 'nullable|exists:types,id',
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio',
@@ -116,7 +116,7 @@ class ProjectController extends Controller
                 'image' => 'nullable|image',
                 'text' => 'required|string',
                 'published' => 'boolean',
-                'type_id' => 'nullable|exists:type,id',
+                'type_id' => 'nullable|exists:types,id',
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio',

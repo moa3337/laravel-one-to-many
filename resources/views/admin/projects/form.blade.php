@@ -25,7 +25,7 @@
 
     @if ($project->id)
         <form method="POST" action="{{ route('admin.projects.update', $project) }}" class="row" enctype="multipart/form-data">
-        @method('PUT')
+        @method('put')
     @else
         <form method="POST" action="{{ route('admin.projects.store') }}" class="row" enctype="multipart/form-data">
     @endif        

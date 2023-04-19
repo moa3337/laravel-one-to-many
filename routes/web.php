@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
-use App\Models\Project;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +26,17 @@ Route::middleware('auth')
     ->prefix('/admin')
     ->name('admin.')
     ->group(function () {
+        // # Soft-delete and trash for projects
         Route::get('/projects/trash', [ProjectController::class, 'trash'])->name('projects.trash');
         Route::put('/projects/{projects}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
         Route::delete('/projects/{projects}/force-delete', [ProjectController::class, 'forceDelete'])->name('projects.force-delete');
+
+        // # Projects resource
         Route::resource('projects', ProjectController::class);
         //->parameters(['projects' => 'project:slug']);
+
+        // # Types resource
+        Route::resource('types', TypeController::class)->except(['show']);
     });
 
 Route::middleware('auth')
