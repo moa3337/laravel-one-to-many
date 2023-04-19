@@ -17,7 +17,7 @@ class TypeController extends Controller
     {
         $types = Type::orderBy('updated_at', 'DESC')->paginate(10);
         //$types = Type::all();
-        return view('admin.types,index', compact('types'));
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -58,7 +58,7 @@ class TypeController extends Controller
         $type->fill($request->all());
         $type->save();
 
-        return to_route('admin.types.show')
+        return to_route('admin.types.index')
             ->with('message', "Tipologia $type->id creata con successo");
     }
 
@@ -70,7 +70,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        return view('admin.types.show', compact('type'));
+        return view('admin.types.index', compact('type'));
     }
 
     /**
@@ -110,7 +110,7 @@ class TypeController extends Controller
 
         $type->update($request->all());
 
-        return to_route('admin.types.show')
+        return to_route('admin.types.index')
             ->with('message', "Tipologia $type->id modificata con successo");
     }
 
@@ -123,10 +123,9 @@ class TypeController extends Controller
     public function destroy(Type $type)
     {
         $type_id = $type->id;
-        $type-delete();
+        $type->delete();
         return to_route('admin.types.index')
-            -with('message')
-            - with('message', "Tipologia $type_id eliminata!")
-
+            - with('message')
+            - with('message', "Tipologia $type_id eliminata!");
     }
 }

@@ -31,26 +31,21 @@
         <form method="POST" action="{{ route('admin.types.store') }}" class="row" enctype="multipart/form-data">
     @endif        
         @csrf
-        <div class="row">
-            <div class="col-12">
-                <label for="published" class="form-label">Vuoi pubblicare il progetto?</label>
-                <input class="form-check-input m- @error('published') is-invalid @enderror" 
-                    type="checkbox" name="published" id="published" value="1"
-                    @checked(old('published', $project->published))
-                >
-                @error('published')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-        </div>
-        <hr class="mt-2">
         
         <div class="col">
             <label for="label" class="form-label">Label</label>
             <input type="text" name="label" id="label" class="form-control @error('label') is-invalid @enderror" value="{{ old('label', $type->label) }}" />
             @error('label')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+
+        <div class="col-1">
+            <label for="color" class="form-label">Label</label>
+            <input type="color" name="color" id="color" class="form-control @error('label') is-invalid @enderror" value="{{ old('color', $type->color) }}" />
+            @error('color')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

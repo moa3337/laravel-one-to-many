@@ -19,11 +19,14 @@
                     <!-- Left Side Of Navbar -->
                     @auth 
                     <ul class="navbar-nav me-auto">
-                        {{--<li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Home') }}</a>
-                        </li>--}}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.projects.index') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="">{{ __('Home') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if (request()->routeIs('admin.projects*')) text-danger @endif" href="{{ route('admin.projects.index') }}">{{ __('Progetti') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if (request()->routeIs('admin.types*')) text-danger @endif" href="{{ route('admin.types.index') }}">{{ __('Tipologie') }}</a>
                         </li>
                     </ul>
                     @endauth
