@@ -17,7 +17,7 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Tipologia</th>
-                <th scope="col">Colore</th>
+                <th scope="col">Codice colore</th>
                 <th scope="col">Pill</th>
                 <th scope="col">
                     Creazione
@@ -35,7 +35,7 @@
                 <th scope="row">{{ $type->id }}</th>
                 <td>{{ $type->label }}</td>
                 <td>
-                    <span class="color-preview" style="background-color: {{ $type->color }}">
+                    <span class="color-preview">
                         {{ $type->color }}
                     </span>
                 </td>
